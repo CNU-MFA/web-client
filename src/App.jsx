@@ -1,11 +1,9 @@
-import { useState } from 'react';
-import Login from './pages/Login';
-import AddDevice from './pages/AddDevice';
+import Router from './router/Router';
 
 function App() {
   return (
     <>
-      <AddDevice />
+      <Router />
     </>
   );
 }
