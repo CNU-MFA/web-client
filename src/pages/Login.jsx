@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { LOGIN } from '../constants/login';
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -20,14 +21,14 @@ const Login = () => {
 
   return (
     <>
-      <h1>충남대학교 포털</h1>
+      <h1>{LOGIN.TITLE}</h1>
       <form>
-        <label htmlFor="userId">학번 및 교직원 번호</label>
+        <label htmlFor="userId">{LOGIN.USER_ID}</label>
         <input type="text" id="userId" name="userId" onChange={handleChange} />
-        <label htmlFor="userPw">비밀번호</label>
+        <label htmlFor="userPw">{LOGIN.USER_PASSWORD}</label>
         <input type="password" id="userPw" name="userPw" onChange={handleChange} />
         <button type="button" onClick={handleSubmit}>
-          로그인
+          {LOGIN.SUBMIT}
         </button>
       </form>
     </>
