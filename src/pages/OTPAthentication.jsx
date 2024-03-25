@@ -1,14 +1,27 @@
+import { useEffect } from 'react';
 import { OTP_ATHENTICATION } from '../constants/otpAthentication';
+import { generateRandomNumber } from '../utils/generateRandomNumber';
+import { useState } from 'react';
 
 const OTPAthentication = () => {
-  // 난수 생성 로직
+  const [randomNumber, setRandomNumber] = useState();
+
+  useEffect(() => {
+    setRandomNumber(generateRandomNumber());
+  }, []);
+
+  const handleSubmit = () => {
+    console.log(randomNumber);
+  };
 
   return (
     <>
       <h1>{OTP_ATHENTICATION.TITLE}</h1>
-      <strong></strong>
+      <strong>{randomNumber}</strong>
       <p>{OTP_ATHENTICATION.DESCRIPTION}</p>
-      <button type="button">{OTP_ATHENTICATION.SUBMIT}</button>
+      <button type="button" onClick={handleSubmit}>
+        {OTP_ATHENTICATION.SUBMIT}
+      </button>
     </>
   );
 };
