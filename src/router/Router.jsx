@@ -3,6 +3,7 @@ import Login from '../pages/Login';
 import AddDevice from '../pages/AddDevice';
 import Athentication from '../pages/Athentication';
 import OTPAthentication from '../pages/OTPAthentication';
+import BiometricAthentication from '../pages/BiometricAthentication';
 
 const Router = () => {
   return (
@@ -12,6 +13,7 @@ const Router = () => {
         <Route path="/addDevice" element={<AddDevice />} />
         <Route path="/athentication" element={<Athentication />} />
         <Route path="/otp-athentication" element={<OTPAthentication />} />
+        <Route path="/biometric-athentication" element={<BiometricAthentication />} />
       </Routes>
     </BrowserRouter>
   );
