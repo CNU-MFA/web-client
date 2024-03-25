@@ -10,7 +10,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/addDevice" element={<AddDevice />} />
+        <Route path="/add-device" element={<AddDevice />} />
         <Route path="/athentication" element={<Athentication />} />
         <Route path="/otp-athentication" element={<OTPAthentication />} />
         <Route path="/biometric-athentication" element={<BiometricAthentication />} />

@@ -23,7 +23,12 @@ const AddDevice = () => {
       <div>App Store QR코드</div>
       <p>{ADD_DEVICE.DESCRIPTION}</p>
       <form>
-        <input type="text" placeholder="OTP 코드" name="otp" onChange={handleChange} />
+        <input
+          type="text"
+          placeholder={ADD_DEVICE.OTP_PLACEHOLDER}
+          name="otp"
+          onChange={handleChange}
+        />
         <button type="button" onClick={handleSubmit}>
           {ADD_DEVICE.SUBMIT}
         </button>
