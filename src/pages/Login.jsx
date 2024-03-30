@@ -7,10 +7,10 @@ import { useNavigate } from 'react-router-dom';
 import { ERROR } from '../constants/error';
 import { NAVIGATION } from '../constants/navigation';
 import Card from '../components/common/Card';
+import { postLogin } from '../api/auth';
 
 const Login = () => {
   const navigate = useNavigate();
-
   const [user, setUser] = useState({
     id: '',
     password: '',
@@ -24,12 +24,29 @@ const Login = () => {
     });
   };
 
+  const isInputValid = () => {
+    return user.id !== '' && user.password !== '';
+  };
+
+  const handleLoginResponse = (res) => {
+    if (res.ok) navigateToAddDevice(res.deviceStatus);
+  };
+
+  const navigateToAddDevice = (deviceStatus) => {
+    navigate(NAVIGATION.ADD_DEVICE, { state: deviceStatus });
+  };
+
+  const displayLoginPrompt = () => {
+    alert(ERROR.LOGIN_PROMPT_MESSAGE);
+  };
+
   const handleSubmit = () => {
-    if (user.id === '' || user.password === '') {
-      alert(ERROR.LOGIN_PROMPT_MESSAGE);
+    if (isInputValid()) {
+      const res = postLogin(user.id, user.password);
+      handleLoginResponse(res);
       return;
     }
-    navigate(NAVIGATION.ADD_DEVICE);
+    displayLoginPrompt();
   };
 
   return (
