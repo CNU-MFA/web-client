@@ -1,21 +1,21 @@
 import styled from 'styled-components';
 
-const LoginButton = ({ type, onClick, text, ...props }) => {
+const Button = ({ type, varient, onClick, text, ...props }) => {
   return (
-    <Layout type={type} onClick={onClick} {...props}>
+    <Layout type={type} varient={varient} onClick={onClick} {...props}>
       {text}
     </Layout>
   );
 };
 
-export default LoginButton;
+export default Button;
 
 const Layout = styled.button`
   box-sizing: border-box;
-  width: 110px;
-  height: 110px;
+  width: ${({ varient }) => (varient === 'login' ? 110 : 70)}px;
+  height: ${({ varient }) => (varient === 'login' ? 110 : 40)}px;
   background-color: transparent;
-  font-size: 18px;
+  font-size: ${({ varient }) => (varient === 'login' ? 18 : 15)}px;
   display: flex;
   justify-content: center;
   align-items: center;

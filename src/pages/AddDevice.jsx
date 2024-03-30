@@ -4,20 +4,27 @@ import Card from '../components/common/Card';
 import Description from '../components/common/Description';
 import styled from 'styled-components';
 import Input from '../components/common/Input';
+import Button from '../components/common/Button';
+import { useNavigate } from 'react-router-dom';
+import { NAVIGATION } from '../constants/navigation';
+import { ERROR } from '../constants/error';
 
 const AddDevice = () => {
+  const navigate = useNavigate();
+
   const [otp, setOtp] = useState('');
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setOtp({
-      ...otp,
-      [name]: value,
-    });
+    const { value } = e.target;
+    setOtp(value);
   };
 
   const handleSubmit = () => {
-    console.log(otp);
+    if (otp === '') {
+      alert(ERROR.ADD_DEVICE_PROMPT_MESSAGE);
+      return;
+    }
+    navigate(NAVIGATION.ATHENTICATION);
   };
 
   return (
@@ -29,13 +36,18 @@ const AddDevice = () => {
         <Form>
           <Input
             type="text"
+            varient="otp"
             placeholder={ADD_DEVICE.OTP_PLACEHOLDER}
             name="otp"
+            value={otp}
             onChange={handleChange}
           />
-          <button type="button" onClick={handleSubmit}>
-            {ADD_DEVICE.SUBMIT}
-          </button>
+          <Button
+            type="button"
+            varient="otp"
+            onClick={handleSubmit}
+            text={ADD_DEVICE.SUBMIT}
+          />
         </Form>
       </Card>
     </section>
@@ -52,4 +64,8 @@ const Form = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  & button {
+    margin-left: 16px;
+  }
 `;

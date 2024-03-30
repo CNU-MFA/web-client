@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { LOGIN } from '../constants/login';
-import LoginInput from '../components/auth/LoginInput';
-import LoginButton from '../components/auth/LoginButton';
+import Input from '../components/common/Input';
+import Button from '../components/common/Button';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { ERROR } from '../constants/error';
@@ -36,16 +36,18 @@ const Login = () => {
     <Card size={440} title={LOGIN.TITLE}>
       <Form>
         <div>
-          <LoginInput
+          <Input
             type="text"
+            varient="login"
             id="id"
             label={LOGIN.USER_ID}
             placeholder={LOGIN.USER_ID_PLACEHOLDER}
             name="id"
             onChange={handleChange}
           />
-          <LoginInput
+          <Input
             type="password"
+            varient="login"
             id="password"
             label={LOGIN.USER_PASSWORD}
             placeholder={LOGIN.USER_PW_PLACEHOLDER}
@@ -53,7 +55,12 @@ const Login = () => {
             onChange={handleChange}
           />
         </div>
-        <LoginButton type="button" onClick={handleSubmit} text={LOGIN.SUBMIT} />
+        <Button
+          type="button"
+          varient="login"
+          onClick={handleSubmit}
+          text={LOGIN.SUBMIT}
+        />
       </Form>
     </Card>
   );
