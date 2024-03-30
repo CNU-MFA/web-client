@@ -4,16 +4,23 @@ import AddDevice from '../pages/AddDevice';
 import Athentication from '../pages/Athentication';
 import OTPAthentication from '../pages/OTPAthentication';
 import BiometricAthentication from '../pages/BiometricAthentication';
+import { NAVIGATION } from '../constants/navigation';
+
+const navigationConfig = {
+  [NAVIGATION.LOGIN]: <Login />,
+  [NAVIGATION.ADD_DEVICE]: <AddDevice />,
+  [NAVIGATION.ATHENTICATION]: <Athentication />,
+  [NAVIGATION.OTP_ATHENTICATION]: <OTPAthentication />,
+  [NAVIGATION.BIOMETRIC_ATHENTICATION]: <BiometricAthentication />,
+};
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/add-device" element={<AddDevice />} />
-        <Route path="/athentication" element={<Athentication />} />
-        <Route path="/otp-athentication" element={<OTPAthentication />} />
-        <Route path="/biometric-athentication" element={<BiometricAthentication />} />
+        {Object.entries(navigationConfig).map(([path, element]) => (
+          <Route key={path} path={path} element={element} />
+        ))}
       </Routes>
     </BrowserRouter>
   );
