@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { LOGIN } from '../constants/login';
-import LoginInput from '../components/LoginInput';
+import LoginInput from '../components/auth/LoginInput';
+import LoginButton from '../components/auth/LoginButton';
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -22,8 +23,8 @@ const Login = () => {
 
   return (
     <>
-      <h1>{LOGIN.TITLE}</h1>
       <form>
+        <h1>{LOGIN.TITLE}</h1>
         <LoginInput
           type="text"
           id="id"
@@ -40,9 +41,7 @@ const Login = () => {
           name="password"
           onChange={handleChange}
         />
-        <button type="button" onClick={handleSubmit}>
-          {LOGIN.SUBMIT}
-        </button>
+        <LoginButton type="button" onClick={handleSubmit} text={LOGIN.SUBMIT} />
       </form>
     </>
   );
