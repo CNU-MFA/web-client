@@ -26,5 +26,6 @@ const Layout = styled.button`
   &:hover {
     background-color: #1472ec;
     color: #fff;
+    border: none;
   }
 `;
