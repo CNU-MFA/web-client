@@ -17,7 +17,7 @@ const AddDevice = () => {
   };
 
   return (
-    <>
+    <section>
       <h1>{ADD_DEVICE.TITLE}</h1>
       <div>Google Play QR코드</div>
       <div>App Store QR코드</div>
@@ -33,7 +33,7 @@ const AddDevice = () => {
           {ADD_DEVICE.SUBMIT}
         </button>
       </form>
-    </>
+    </section>
   );
 };
 

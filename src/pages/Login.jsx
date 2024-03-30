@@ -5,6 +5,9 @@ import LoginButton from '../components/auth/LoginButton';
 import styled from 'styled-components';
 import Logo from '../assets/images/logo.png';
 import { useNavigate } from 'react-router-dom';
+import { ERROR } from '../constants/error';
+import { NAVIGATION } from '../constants/navigation';
+import Card from '../components/common/Card';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -24,18 +27,17 @@ const Login = () => {
 
   const handleSubmit = () => {
     if (user.id === '' || user.password === '') {
-      alert('모든 정보를 입력해주세요.');
+      alert(ERROR.LOGIN_PROMPT_MESSAGE);
       return;
     }
-    navigate('/add-device');
+    navigate(NAVIGATION.ADD_DEVICE);
   };
 
   return (
     <section>
       <LogoContainer src={Logo} alt="충남대학교 로고" />
-      <Form>
-        <Title>{LOGIN.TITLE}</Title>
-        <FormInnerContainer>
+      <Card size={440} title={LOGIN.TITLE}>
+        <Form>
           <div>
             <LoginInput
               type="text"
@@ -59,8 +61,8 @@ const Login = () => {
             onClick={handleSubmit}
             text={LOGIN.SUBMIT}
           />
-        </FormInnerContainer>
-      </Form>
+        </Form>
+      </Card>
     </section>
   );
 };
@@ -76,19 +78,6 @@ const LogoContainer = styled.img`
 `;
 
 const Form = styled.form`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-sizing: border-box;
-  width: 440px;
-  height: 200px;
-  background-color: rgba(255, 255, 255, 0.7);
-  color: #333;
-  padding: 20px;
-`;
-
-const FormInnerContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -100,10 +89,4 @@ const FormInnerContainer = styled.div`
   & div:last-of-type {
     margin-bottom: 0;
   }
-`;
-
-const Title = styled.h1`
-  font-size: 19px;
-  font-weight: 700;
-  margin-bottom: 10px;
 `;

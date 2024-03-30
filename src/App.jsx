@@ -21,6 +21,6 @@ const Main = styled.main`
   height: 100vh;
   background-image: url(${backgroundImage});
   background-size: cover;
-  background-repeat: no-repeat; /* 배경 이미지 반복 없음 */
-  background-position: center; /* 배경 이미지 중앙 정렬 */
+  background-repeat: no-repeat;
+  background-position: center;
 `;
