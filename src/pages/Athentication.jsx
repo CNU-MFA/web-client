@@ -1,5 +1,5 @@
 import { ATHENTICATION } from '../constants/athentication';
-import { AthenticationButton } from '../components/AthenticationButton';
+import AthenticationButton from '../components/AthenticationButton';
 
 const Athentication = () => {
   const athentication = {

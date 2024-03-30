@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { LOGIN } from '../constants/login';
+import LoginInput from '../components/LoginInput';
 
 const Login = () => {
   const [user, setUser] = useState({
-    userId: '',
-    userPw: '',
+    id: '',
+    password: '',
   });
 
   const handleChange = (e) => {
@@ -23,20 +24,20 @@ const Login = () => {
     <>
       <h1>{LOGIN.TITLE}</h1>
       <form>
-        <label htmlFor="userId">{LOGIN.USER_ID}</label>
-        <input
+        <LoginInput
           type="text"
-          id="userId"
+          id="id"
+          label={LOGIN.USER_ID}
           placeholder={LOGIN.USER_ID_PLACEHOLDER}
-          name="userId"
+          name="id"
           onChange={handleChange}
         />
-        <label htmlFor="userPw">{LOGIN.USER_PASSWORD}</label>
-        <input
+        <LoginInput
           type="password"
-          id="userPw"
+          id="password"
+          label={LOGIN.USER_PASSWORD}
           placeholder={LOGIN.USER_PW_PLACEHOLDER}
-          name="userPw"
+          name="password"
           onChange={handleChange}
         />
         <button type="button" onClick={handleSubmit}>
