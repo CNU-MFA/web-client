@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Input = ({
   type,
-  varient,
+  variant,
   id,
   label,
   placeholder,
@@ -15,7 +15,7 @@ const Input = ({
       {label && <Label htmlFor={id}>{label}</Label>}
       <InputConatiner
         type={type}
-        varient={varient}
+        variant={variant}
         id={id}
         placeholder={placeholder}
         name={name}
@@ -29,7 +29,7 @@ export default Input;
 
 const InputConatiner = styled.input`
   box-sizing: border-box;
-  width: ${({ varient }) => (varient === 'login' ? 250 : 150)}px;
+  width: ${({ variant }) => (variant === 'login' ? 250 : 150)}px;
   height: 35px;
   background-color: transparent;
   padding: 5px 0;

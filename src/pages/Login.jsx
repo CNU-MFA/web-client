@@ -38,7 +38,7 @@ const Login = () => {
         <div>
           <Input
             type="text"
-            varient="login"
+            variant="login"
             id="id"
             label={LOGIN.USER_ID}
             placeholder={LOGIN.USER_ID_PLACEHOLDER}
@@ -47,7 +47,7 @@ const Login = () => {
           />
           <Input
             type="password"
-            varient="login"
+            variant="login"
             id="password"
             label={LOGIN.USER_PASSWORD}
             placeholder={LOGIN.USER_PW_PLACEHOLDER}
@@ -57,7 +57,7 @@ const Login = () => {
         </div>
         <Button
           type="button"
-          varient="login"
+          variant="login"
           onClick={handleSubmit}
           text={LOGIN.SUBMIT}
         />

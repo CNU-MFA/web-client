@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-const Button = ({ type, varient, onClick, text, ...props }) => {
+const Button = ({ type, variant, onClick, text, ...props }) => {
   return (
-    <Layout type={type} varient={varient} onClick={onClick} {...props}>
+    <Layout type={type} variant={variant} onClick={onClick} {...props}>
       {text}
     </Layout>
   );
@@ -12,10 +12,10 @@ export default Button;
 
 const Layout = styled.button`
   box-sizing: border-box;
-  width: ${({ varient }) => (varient === 'login' ? 110 : 70)}px;
-  height: ${({ varient }) => (varient === 'login' ? 110 : 40)}px;
+  width: ${({ variant }) => (variant === 'login' ? 110 : 80)}px;
+  height: ${({ variant }) => (variant === 'login' ? 110 : 40)}px;
   background-color: transparent;
-  font-size: ${({ varient }) => (varient === 'login' ? 18 : 15)}px;
+  font-size: ${({ variant }) => (variant === 'login' ? 18 : 15)}px;
   display: flex;
   justify-content: center;
   align-items: center;

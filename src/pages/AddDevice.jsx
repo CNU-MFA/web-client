@@ -24,19 +24,17 @@ const AddDevice = () => {
       alert(ERROR.ADD_DEVICE_PROMPT_MESSAGE);
       return;
     }
-    navigate(NAVIGATION.ATHENTICATION);
+    navigate(NAVIGATION.AUTHENTICATION);
   };
 
   return (
     <section>
       <Card size={440} title={ADD_DEVICE.TITLE}>
-        <DescriptionContainer>
-          <Description text={ADD_DEVICE.DESCRIPTION} />
-        </DescriptionContainer>
+        <Description text={ADD_DEVICE.DESCRIPTION} />
         <Form>
           <Input
             type="text"
-            varient="otp"
+            variant="otp"
             placeholder={ADD_DEVICE.OTP_PLACEHOLDER}
             name="otp"
             value={otp}
@@ -44,7 +42,7 @@ const AddDevice = () => {
           />
           <Button
             type="button"
-            varient="otp"
+            variant="otp"
             onClick={handleSubmit}
             text={ADD_DEVICE.SUBMIT}
           />
@@ -56,14 +54,11 @@ const AddDevice = () => {
 
 export default AddDevice;
 
-const DescriptionContainer = styled.div`
-  margin: 30px;
-`;
-
 const Form = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 16px;
 
   & button {
     margin-left: 16px;
