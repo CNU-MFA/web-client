@@ -10,5 +10,5 @@ const Text = styled.p`
   white-space: pre-wrap;
   text-align: center;
   font-size: 18px;
-  line-height: 30px;
+  line-height: 25px;
 `;

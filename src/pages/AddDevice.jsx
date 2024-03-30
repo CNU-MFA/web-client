@@ -3,6 +3,7 @@ import { ADD_DEVICE } from '../constants/addDevice';
 import Card from '../components/common/Card';
 import Description from '../components/common/Description';
 import styled from 'styled-components';
+import Input from '../components/common/Input';
 
 const AddDevice = () => {
   const [otp, setOtp] = useState('');
@@ -25,8 +26,8 @@ const AddDevice = () => {
         <DescriptionContainer>
           <Description text={ADD_DEVICE.DESCRIPTION} />
         </DescriptionContainer>
-        <form>
-          <input
+        <Form>
+          <Input
             type="text"
             placeholder={ADD_DEVICE.OTP_PLACEHOLDER}
             name="otp"
@@ -35,7 +36,7 @@ const AddDevice = () => {
           <button type="button" onClick={handleSubmit}>
             {ADD_DEVICE.SUBMIT}
           </button>
-        </form>
+        </Form>
       </Card>
     </section>
   );
@@ -45,4 +46,10 @@ export default AddDevice;
 
 const DescriptionContainer = styled.div`
   margin: 30px;
+`;
+
+const Form = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
