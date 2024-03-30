@@ -1,26 +1,14 @@
 import Router from './router/Router';
 import GlobalStyle from './assets/styles/GlobalStyle';
-import styled from 'styled-components';
-import backgroundImage from './assets/images/background.png';
+import BaseLayout from './components/common/BaseLayout';
 
 function App() {
   return (
-    <>
+    <BaseLayout>
       <GlobalStyle />
-      <Main>
-        <Router />
-      </Main>
-    </>
+      <Router />
+    </BaseLayout>
   );
 }
 
 export default App;
-
-const Main = styled.main`
-  width: 100%;
-  height: 100vh;
-  background-image: url(${backgroundImage});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-`;

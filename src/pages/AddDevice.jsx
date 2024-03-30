@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { ADD_DEVICE } from '../constants/addDevice';
+import Card from '../components/common/Card';
+import Description from '../components/common/Description';
+import styled from 'styled-components';
 
 const AddDevice = () => {
   const [otp, setOtp] = useState('');
@@ -18,23 +21,28 @@ const AddDevice = () => {
 
   return (
     <section>
-      <h1>{ADD_DEVICE.TITLE}</h1>
-      <div>Google Play QR코드</div>
-      <div>App Store QR코드</div>
-      <p>{ADD_DEVICE.DESCRIPTION}</p>
-      <form>
-        <input
-          type="text"
-          placeholder={ADD_DEVICE.OTP_PLACEHOLDER}
-          name="otp"
-          onChange={handleChange}
-        />
-        <button type="button" onClick={handleSubmit}>
-          {ADD_DEVICE.SUBMIT}
-        </button>
-      </form>
+      <Card size={440} title={ADD_DEVICE.TITLE}>
+        <DescriptionContainer>
+          <Description text={ADD_DEVICE.DESCRIPTION} />
+        </DescriptionContainer>
+        <form>
+          <input
+            type="text"
+            placeholder={ADD_DEVICE.OTP_PLACEHOLDER}
+            name="otp"
+            onChange={handleChange}
+          />
+          <button type="button" onClick={handleSubmit}>
+            {ADD_DEVICE.SUBMIT}
+          </button>
+        </form>
+      </Card>
     </section>
   );
 };
 
 export default AddDevice;
+
+const DescriptionContainer = styled.div`
+  margin: 30px;
+`;
