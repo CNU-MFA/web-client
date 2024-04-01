@@ -8,6 +8,7 @@ import Button from '../components/common/Button';
 import API from '../api/API';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { SUCCESS } from '../constants/messages';
+import instance from '../api/core';
 
 const OTPAuthentication = () => {
   const navigate = useNavigate();
