@@ -5,13 +5,12 @@ import Description from '../components/common/Description';
 import styled from 'styled-components';
 import Input from '../components/common/Input';
 import Button from '../components/common/Button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { NAVIGATION } from '../constants/navigation';
 import { ERROR } from '../constants/error';
 
 const AddDevice = () => {
   const navigate = useNavigate();
-
   const [otp, setOtp] = useState('');
 
   const handleChange = (e) => {

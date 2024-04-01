@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { ERROR } from '../constants/error';
 import { NAVIGATION } from '../constants/navigation';
 import Card from '../components/common/Card';
-import { postLogin } from '../api/auth';
+import API from '../api/API';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -25,28 +25,28 @@ const Login = () => {
   };
 
   const isInputValid = () => {
-    return user.id !== '' && user.password !== '';
+    return user.id === '' || user.password === '';
   };
 
-  const handleLoginResponse = (res) => {
-    if (res.ok) navigateToAddDevice(res.deviceStatus);
-  };
-
-  const navigateToAddDevice = (deviceStatus) => {
-    navigate(NAVIGATION.ADD_DEVICE, { state: deviceStatus });
+  const handleSuccessfulLogin = (res) => {
+    if (res.ok && res.deviceState) {
+      navigate(NAVIGATION.AUTHENTICATION);
+      return;
+    }
+    navigate(NAVIGATION.ADD_DEVICE);
   };
 
   const displayLoginPrompt = () => {
     alert(ERROR.LOGIN_PROMPT_MESSAGE);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (isInputValid()) {
-      const res = postLogin(user.id, user.password);
-      handleLoginResponse(res);
+      displayLoginPrompt();
       return;
     }
-    displayLoginPrompt();
+    const res = API.postLogin(user.id, user.password);
+    handleSuccessfulLogin(res);
   };
 
   return (

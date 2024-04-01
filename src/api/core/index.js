@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // baseURL: import.meta.env.REACT_APP_API_URL
 const instance = axios.create({
-  baseURL: 'http://example.com/',
+  baseURL: 'https://api.chucknorris.io/jokes',
 });
 
 instance.defaults.timeout = 2500;
