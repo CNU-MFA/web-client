@@ -43,7 +43,7 @@ const AddDevice = () => {
       alert(ERROR.ADD_DEVICE_PROMPT_MESSAGE);
       return;
     }
-    const res = await API.postVerifyOTP(
+    const res = await API.postVerifyDeviceOTP(
       user.id,
       user.password,
       registrationOtp,
