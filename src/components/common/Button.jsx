@@ -22,6 +22,7 @@ const Layout = styled.button`
   cursor: pointer;
   outline: none;
   border: 1px solid #000;
+  transition: all 0.15s ease-in-out;
 
   &:hover {
     background-color: #1472ec;

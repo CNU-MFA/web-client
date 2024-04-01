@@ -1,71 +1,47 @@
 import { AUTHENTICATION } from '../constants/authentication';
 import Card from '../components/common/Card';
 import Description from '../components/common/Description';
-import Button from '../components/common/Button';
+// import Button from '../components/common/Button';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useState } from 'react';
 import API from '../api/API';
 import { ERROR, SUCCESS } from '../constants/messages';
 import instance from '../api/core';
+import AuthenticationButton from '../components/AuthenticationButton';
+import { NAVIGATION } from '../constants/navigation';
 
 const Authentication = () => {
-  const navigate = useNavigate();
   const location = useLocation();
-
   const user = location.state;
-  const [authenticationStatus, setAuthenticationStatus] = useState(false);
 
-  const handleRequest = () => {
-    // 앱으로 noti + authentication state: true
-    setAuthenticationStatus(true);
-  };
-
-  const handleSuccess = async () => {
-    const res = await API.postVerifyAuthentication(user.id, user.password);
-    handleVerifyAuthentication(res);
-  };
-
-  const handleVerifyAuthentication = (res) => {
-    if (res.ok) {
-      onLoginSuccess(res);
-      alert(SUCCESS.AUTHENTICATION);
-      return;
-    }
-    displayAuthenticationError();
-  };
-
-  const onLoginSuccess = (res) => {
-    const access_token = res.headers.authorization;
-    instance.defaults.headers.common['Authorization'] =
-      `Bearer ${access_token}`;
-  };
-
-  const displayAuthenticationError = () => {
-    alert(ERROR.AUTHENTICATION);
+  const authenticationConfig = {
+    otp: {
+      type: 'button',
+      text: AUTHENTICATION.OTP,
+      navigation: NAVIGATION.OTP_AUTHENTICATION,
+    },
+    biometric: {
+      type: 'button',
+      text: AUTHENTICATION.BIOMETRIC,
+      navigation: NAVIGATION.BIOMETRIC_AUTHENTICATION,
+    },
   };
 
   return (
     <section>
       <Card size={440} title={AUTHENTICATION.TITLE}>
-        <Description
-          text={
-            authenticationStatus
-              ? AUTHENTICATION.SUCCESS_DESCRIPTION
-              : AUTHENTICATION.REQUEST_DESCRIPTION
-          }
-        />
+        <Description text={AUTHENTICATION.DESCRIPTION} />
         <ButtonContainer>
-          <Button
-            type="button"
-            variant="authentication"
-            onClick={authenticationStatus ? handleSuccess : handleRequest}
-            text={
-              authenticationStatus
-                ? AUTHENTICATION.SUCCESS
-                : AUTHENTICATION.REQUEST
-            }
-          />
+          {Object.entries(authenticationConfig).map(([key, value]) => (
+            <AuthenticationButton
+              key={key}
+              type={value.type}
+              navigation={value.navigation}
+              text={value.text}
+              user={user}
+            />
+          ))}
         </ButtonContainer>
       </Card>
     </section>
@@ -76,7 +52,16 @@ export default Authentication;
 
 const ButtonContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
+
+  & button {
+    margin-bottom: 10px;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 `;
