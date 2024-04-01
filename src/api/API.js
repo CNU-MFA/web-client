@@ -14,6 +14,15 @@ const API = {
       },
     });
   },
+  postVerifyOTP: async (otp) => {
+    instance.post({
+      method: 'POST',
+      url: '/verify-otp',
+      data: {
+        otp,
+      },
+    });
+  },
 };
 
 export default API;

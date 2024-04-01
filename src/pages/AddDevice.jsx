@@ -8,6 +8,7 @@ import Button from '../components/common/Button';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { NAVIGATION } from '../constants/navigation';
 import { ERROR } from '../constants/error';
+import API from '../api/API';
 
 const AddDevice = () => {
   const navigate = useNavigate();
@@ -18,12 +19,28 @@ const AddDevice = () => {
     setOtp(value);
   };
 
-  const handleSubmit = () => {
-    if (otp === '') {
+  const isInputValid = () => {
+    return otp === '';
+  };
+
+  const handleInvalidOTP = () => {
+    alert(ERROR.INVALID_OTP_CODE);
+  };
+  const handleSuccessfulVerifyOTP = (res) => {
+    if (res.ok) {
+      navigate(NAVIGATION.AUTHENTICATION);
+      return;
+    }
+    handleInvalidOTP();
+  };
+
+  const handleSubmit = async () => {
+    if (isInputValid()) {
       alert(ERROR.ADD_DEVICE_PROMPT_MESSAGE);
       return;
     }
-    navigate(NAVIGATION.AUTHENTICATION);
+    const res = await API.postVerifyOTP(opt);
+    handleSuccessfulVerifyOTP(res);
   };
 
   return (
