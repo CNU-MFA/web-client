@@ -7,28 +7,32 @@ import Input from '../components/common/Input';
 import Button from '../components/common/Button';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { NAVIGATION } from '../constants/navigation';
-import { ERROR } from '../constants/error';
+import { ERROR } from '../constants/messages';
 import API from '../api/API';
 
 const AddDevice = () => {
   const navigate = useNavigate();
-  const [otp, setOtp] = useState('');
+  const location = useLocation();
+
+  const user = location.state;
+  const [registrationOtp, setRegistrationOtp] = useState('');
 
   const handleChange = (e) => {
     const { value } = e.target;
-    setOtp(value);
+    setRegistrationOtp(value);
   };
 
   const isInputValid = () => {
-    return otp === '';
+    return registrationOtp === '';
   };
 
   const handleInvalidOTP = () => {
     alert(ERROR.INVALID_OTP_CODE);
   };
-  const handleSuccessfulVerifyOTP = (res) => {
+
+  const handleVerifyOTP = (res) => {
     if (res.ok) {
-      navigate(NAVIGATION.AUTHENTICATION);
+      navigate(NAVIGATION.AUTHENTICATION, { state: { ...user } });
       return;
     }
     handleInvalidOTP();
@@ -39,8 +43,12 @@ const AddDevice = () => {
       alert(ERROR.ADD_DEVICE_PROMPT_MESSAGE);
       return;
     }
-    const res = await API.postVerifyOTP(opt);
-    handleSuccessfulVerifyOTP(res);
+    const res = await API.postVerifyOTP(
+      user.id,
+      user.password,
+      registrationOtp,
+    );
+    handleVerifyOTP(res);
   };
 
   return (
@@ -53,7 +61,7 @@ const AddDevice = () => {
             variant="otp"
             placeholder={ADD_DEVICE.OTP_PLACEHOLDER}
             name="otp"
-            value={otp}
+            value={registrationOtp}
             onChange={handleChange}
           />
           <Button

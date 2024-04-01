@@ -4,7 +4,7 @@ import Input from '../components/common/Input';
 import Button from '../components/common/Button';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { ERROR } from '../constants/error';
+import { ERROR } from '../constants/messages';
 import { NAVIGATION } from '../constants/navigation';
 import Card from '../components/common/Card';
 import API from '../api/API';
@@ -30,10 +30,10 @@ const Login = () => {
 
   const handleSuccessfulLogin = (res) => {
     if (res.ok && res.deviceState) {
-      navigate(NAVIGATION.AUTHENTICATION);
+      navigate(NAVIGATION.AUTHENTICATION, { state: { ...user } });
       return;
     }
-    navigate(NAVIGATION.ADD_DEVICE);
+    navigate(NAVIGATION.ADD_DEVICE, { state: { ...user } });
   };
 
   const displayLoginPrompt = () => {
@@ -45,7 +45,7 @@ const Login = () => {
       displayLoginPrompt();
       return;
     }
-    const res = API.postLogin(user.id, user.password);
+    const res = await API.postLogin(user.id, user.password);
     handleSuccessfulLogin(res);
   };
 

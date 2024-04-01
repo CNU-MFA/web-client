@@ -2,21 +2,47 @@ import { AUTHENTICATION } from '../constants/authentication';
 import Card from '../components/common/Card';
 import Description from '../components/common/Description';
 import Button from '../components/common/Button';
-import { useNavigate } from 'react-router-dom';
-import { NAVIGATION } from '../constants/navigation';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useState } from 'react';
+import API from '../api/API';
+import { ERROR, SUCCESS } from '../constants/messages';
+import instance from '../api/core';
 
 const Authentication = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const user = location.state;
   const [authenticationStatus, setAuthenticationStatus] = useState(false);
 
   const handleRequest = () => {
+    // 앱으로 noti + authentication state: true
     setAuthenticationStatus(true);
   };
 
-  const handleSuccess = () => {
-    console.log('done!');
+  const handleSuccess = async () => {
+    const res = await API.postVerifyAuthentication(user.id, user.password);
+    handleVerifyAuthentication(res);
+  };
+
+  const handleVerifyAuthentication = (res) => {
+    if (res.ok) {
+      onLoginSuccess(res);
+      alert(SUCCESS.AUTHENTICATION);
+      return;
+    }
+    displayAuthenticationError();
+  };
+
+  const onLoginSuccess = (res) => {
+    const access_token = res.headers.authorization;
+    instance.defaults.headers.common['Authorization'] =
+      `Bearer ${access_token}`;
+  };
+
+  const displayAuthenticationError = () => {
+    alert(ERROR.AUTHENTICATION);
   };
 
   return (

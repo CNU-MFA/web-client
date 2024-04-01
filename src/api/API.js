@@ -14,12 +14,24 @@ const API = {
       },
     });
   },
-  postVerifyOTP: async (otp) => {
+  postVerifyOTP: async (id, password, registrationOtp) => {
     instance.post({
       method: 'POST',
       url: '/verify-otp',
       data: {
-        otp,
+        id,
+        password,
+        registrationOtp,
+      },
+    });
+  },
+  postVerifyAuthentication: async (id, password) => {
+    instance.post({
+      method: 'POST',
+      url: '/verify-authentication',
+      data: {
+        id,
+        password,
       },
     });
   },
