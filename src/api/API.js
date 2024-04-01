@@ -25,6 +25,17 @@ const API = {
       },
     });
   },
+  postSetOTP: async (id, password, otp) => {
+    instance.post({
+      method: 'POST',
+      url: '/set-otp',
+      data: {
+        id,
+        password,
+        otp,
+      },
+    });
+  },
   postVerifyAuthentication: async (id, password) => {
     instance.post({
       method: 'POST',

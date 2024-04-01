@@ -1,13 +1,8 @@
 import { AUTHENTICATION } from '../constants/authentication';
 import Card from '../components/common/Card';
 import Description from '../components/common/Description';
-// import Button from '../components/common/Button';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { useState } from 'react';
-import API from '../api/API';
-import { ERROR, SUCCESS } from '../constants/messages';
-import instance from '../api/core';
 import AuthenticationButton from '../components/AuthenticationButton';
 import { NAVIGATION } from '../constants/navigation';
 
