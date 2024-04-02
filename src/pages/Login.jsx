@@ -33,7 +33,10 @@ const Login = () => {
       navigate(NAVIGATION.AUTHENTICATION, { state: { ...user } });
       return;
     }
-    navigate(NAVIGATION.ADD_DEVICE, { state: { ...user } });
+    
+    if (res.ok && !res.deviceState) {
+      navigate(NAVIGATION.ADD_DEVICE, { state: { ...user } });
+    }
   };
 
   const displayLoginPrompt = () => {
