@@ -1,14 +1,14 @@
 import styled from 'styled-components';
-import Card from '../components/common/Card';
 import { OTP_AUTHENTICATION } from '../constants/main';
+import { SUCCESS } from '../constants/messages';
 import { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { generateOTPCode } from '../utils/generateOTPCode';
+import Card from '../components/common/Card';
 import Description from '../components/common/Description';
 import Button from '../components/common/Button';
-import API from '../api/API';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { SUCCESS } from '../constants/messages';
 import instance from '../api/core';
+import API from '../api/API';
 
 const OTPAuthentication = () => {
   const navigate = useNavigate();

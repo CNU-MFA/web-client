@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { ADD_DEVICE } from '../constants/main';
-import Card from '../components/common/Card';
-import Description from '../components/common/Description';
 import styled from 'styled-components';
-import Input from '../components/common/Input';
-import Button from '../components/common/Button';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { ADD_DEVICE } from '../constants/main';
 import { NAVIGATION } from '../constants/navigation';
 import { ERROR } from '../constants/messages';
+import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import Card from '../components/common/Card';
+import Description from '../components/common/Description';
+import Input from '../components/common/Input';
+import Button from '../components/common/Button';
 import API from '../api/API';
 
 const AddDevice = () => {

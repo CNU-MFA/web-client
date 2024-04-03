@@ -1,10 +1,10 @@
 import styled from 'styled-components';
+import { BIOMETRIC_AUTHENTICATION } from '../constants/main';
+import { ERROR, SUCCESS } from '../constants/messages';
+import { useLocation } from 'react-router-dom';
 import Button from '../components/common/Button';
 import Card from '../components/common/Card';
 import Description from '../components/common/Description';
-import { BIOMETRIC_AUTHENTICATION } from '../constants/main';
-import { useLocation } from 'react-router-dom';
-import { ERROR, SUCCESS } from '../constants/messages';
 import instance from '../api/core';
 import API from '../api/API';
 
