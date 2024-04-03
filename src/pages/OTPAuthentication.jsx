@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Card from '../components/common/Card';
-import { OTP_AUTHENTICATION } from '../constants/OTPAuthentication';
+import { OTP_AUTHENTICATION } from '../constants/main';
 import { useEffect, useState } from 'react';
 import { generateOTPCode } from '../utils/generateOTPCode';
 import Description from '../components/common/Description';

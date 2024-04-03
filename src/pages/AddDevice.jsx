@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ADD_DEVICE } from '../constants/addDevice';
+import { ADD_DEVICE } from '../constants/main';
 import Card from '../components/common/Card';
 import Description from '../components/common/Description';
 import styled from 'styled-components';

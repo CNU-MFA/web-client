@@ -1,4 +1,4 @@
-import { AUTHENTICATION } from '../constants/authentication';
+import { AUTHENTICATION } from '../constants/main';
 import Card from '../components/common/Card';
 import Description from '../components/common/Description';
 import { useLocation } from 'react-router-dom';

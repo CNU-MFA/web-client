@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { LOGIN } from '../constants/login';
+import { LOGIN } from '../constants/main';
 import Input from '../components/common/Input';
 import Button from '../components/common/Button';
 import styled from 'styled-components';
