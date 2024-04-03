@@ -1,27 +1,14 @@
+import styled from 'styled-components';
 import { AUTHENTICATION } from '../constants/main';
+import { authenticationConfig } from '../config/authenticationConfig';
+import { useLocation } from 'react-router-dom';
 import Card from '../components/common/Card';
 import Description from '../components/common/Description';
-import { useLocation } from 'react-router-dom';
-import styled from 'styled-components';
 import AuthenticationButton from '../components/AuthenticationButton';
-import { NAVIGATION } from '../constants/navigation';
 
 const Authentication = () => {
   const location = useLocation();
   const user = location.state;
-
-  const authenticationConfig = {
-    otp: {
-      type: 'button',
-      text: AUTHENTICATION.OTP,
-      navigation: NAVIGATION.OTP_AUTHENTICATION,
-    },
-    biometric: {
-      type: 'button',
-      text: AUTHENTICATION.BIOMETRIC,
-      navigation: NAVIGATION.BIOMETRIC_AUTHENTICATION,
-    },
-  };
 
   return (
     <section>
