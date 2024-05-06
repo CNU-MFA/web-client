@@ -11,17 +11,6 @@ const API = {
       },
     });
   },
-  postVerifyDeviceOTP: async (id, password, registrationOtp) => {
-    instance.post({
-      method: 'POST',
-      url: '/verify-device-otp',
-      data: {
-        id,
-        password,
-        registrationOtp,
-      },
-    });
-  },
   postSetOTP: async (id, password, otp) => {
     instance.post({
       method: 'POST',

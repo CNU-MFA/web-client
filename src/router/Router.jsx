@@ -1,5 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { navigationConfig } from '../config/navigationConfig';
+import { NAVIGATION } from '../utils/constants/navigation';
+import Login from '../pages/Login';
+import Authentication from '../pages/Authentication';
+
+const navigationConfig = {
+  [NAVIGATION.LOGIN]: Login,
+  [NAVIGATION.AUTHENTICATION]: Authentication,
+};
 
 const Router = () => {
   return (

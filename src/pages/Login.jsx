@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { LOGIN } from '../constants/main';
+import { LOGIN } from '../utils/constants/main';
 import Input from '../components/common/Input';
 import Button from '../components/common/Button';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { ERROR } from '../constants/messages';
-import { NAVIGATION } from '../constants/navigation';
+import { ERROR } from '../utils/constants/messages';
+import { NAVIGATION } from '../utils/constants/navigation';
 import Card from '../components/common/Card';
-import API from '../api/API';
+import API from '../apis/API';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -30,12 +30,9 @@ const Login = () => {
 
   const handleSuccessfulLogin = (res) => {
     if (res.ok && res.deviceState) {
+      // 푸시 알림 + authentication 페이지로 이동
       navigate(NAVIGATION.AUTHENTICATION, { state: { ...user } });
       return;
-    }
-    
-    if (res.ok && !res.deviceState) {
-      navigate(NAVIGATION.ADD_DEVICE, { state: { ...user } });
     }
   };
 
