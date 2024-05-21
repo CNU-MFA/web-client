@@ -5,7 +5,6 @@ import Card from '../components/common/Card';
 import Description from '../components/common/Description';
 import Button from '../components/common/Button';
 import { useState, useEffect } from 'react';
-import { generateOTPCode } from '../utils/generateOTPCode';
 import API from '../apis/API';
 import { ERROR, SUCCESS } from '../utils/constants/messages';
 Button;
@@ -13,21 +12,19 @@ Button;
 const Authentication = () => {
   const [otp, setOtp] = useState('');
 
-  const location = useLocation();
-  const user = location.state;
+  // const location = useLocation();
+  // const user = location.state;
 
   useEffect(() => {
     const handleRequestOTP = async () => {
-      const otp = generateOTPCode();
+      const otp = await API.getOTPCode();
       setOtp(otp);
-      await API.postSetOTP(user.id, user.password, otp);
     };
     handleRequestOTP();
   }, []);
 
   const handleSubmit = async () => {
-    const res = await API.postVerifyAuthentication(user.id, user.password);
-    // res => 인증이 완료되면 인증 성공 알람, 실패하면 실패 알람
+    const res = await API.getAuthStatus();
     if (!res.ok) {
       alert(ERROR.AUTHENTICATION);
       return;

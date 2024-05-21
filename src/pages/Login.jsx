@@ -29,11 +29,11 @@ const Login = () => {
   };
 
   const handleSuccessfulLogin = (res) => {
-    if (res.ok && res.deviceState) {
-      // 푸시 알림 + authentication 페이지로 이동
+    if (res.ok) {
       navigate(NAVIGATION.AUTHENTICATION, { state: { ...user } });
       return;
     }
+    alert(ERROR.LOGIN_NOT_USER);
   };
 
   const displayLoginPrompt = () => {

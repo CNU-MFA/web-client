@@ -4,34 +4,25 @@ const API = {
   postLogin: async (id, password) => {
     instance.post({
       method: 'POST',
-      url: '/login',
+      url: '/web/login',
       data: {
         id,
         password,
       },
     });
   },
-  postSetOTP: async (id, password, otp) => {
-    instance.post({
-      method: 'POST',
-      url: '/set-otp',
-      data: {
-        id,
-        password,
-        otp,
-      },
+  getOTPCode: async () => {
+    instance.get({
+      method: 'GET',
+      url: '/web/auth/otp',
     });
   },
-  postVerifyAuthentication: async (id, password) => {
-    instance.post({
-      method: 'POST',
-      url: '/verify-authentication',
-      data: {
-        id,
-        password,
-      },
-    });
-  },
+  getAuthStatus: async () => [
+    instance.get({
+      method: 'GET',
+      url: '/web/auth/status',
+    }),
+  ],
 };
 
 export default API;
