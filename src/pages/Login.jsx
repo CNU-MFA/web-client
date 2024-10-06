@@ -29,9 +29,10 @@ const Login = () => {
 
   const handleSuccessfulLogin = async () => {
     const res = await API.postLogin(user.id, user.password);
-    const { isOk, otp } = res;
-    
-    if (isOk) {
+    const status = res.status;
+    const { otp } = res.data;
+
+    if (status === 200) {
       navigate(NAVIGATION.AUTHENTICATION, { state: { ...user, otp } });
       return;
     }

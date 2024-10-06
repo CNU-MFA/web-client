@@ -19,9 +19,9 @@ const Authentication = () => {
 
   const handleSubmit = async () => {
     const res = await API.postAuthStatus(data.id, data.password);
-    const { isOk } = res;
+    const status = res.status;
 
-    if (!isOk) {
+    if (status === 200) {
       alert(ERROR.AUTHENTICATION);
       return;
     }
