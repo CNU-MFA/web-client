@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { AUTHENTICATION } from '../utils/constants/main';
 import { useLocation } from 'react-router-dom';
 import Card from '../components/common/Card';
 import Description from '../components/common/Description';
@@ -10,39 +9,35 @@ import { ERROR, SUCCESS } from '../utils/constants/messages';
 Button;
 
 const Authentication = () => {
-  const [otp, setOtp] = useState('');
-
-  // const location = useLocation();
-  // const user = location.state;
+  const location = useLocation();
+  const data = location.state;
+  const [otp, setOtp] = useState(data.otp);
 
   useEffect(() => {
-    const handleRequestOTP = async () => {
-      const otp = await API.getOTPCode();
-      setOtp(otp);
-    };
-    handleRequestOTP();
-  }, []);
+    setOtp(otp);
+  }, [otp]);
 
   const handleSubmit = async () => {
-    const res = await API.getAuthStatus();
-    if (!res.ok) {
+    const res = await API.postAuthStatus(data.id, data.password);
+    const { isOk } = res;
+
+    if (!isOk) {
       alert(ERROR.AUTHENTICATION);
       return;
     }
+
     alert(SUCCESS.AUTHENTICATION);
   };
 
   return (
     <section>
-      <Card size={440} title={AUTHENTICATION.TITLE}>
-        <Description text={AUTHENTICATION.DESCRIPTION} />
+      <Card size={440} title="2차 인증">
+        <Description
+          text={`모바일 앱에서 \n OTP 인증 또는 생체인식 인증을 진행해주세요.`}
+        />
         <OTP>{otp}</OTP>
         <ButtonContainer>
-          <Button
-            type="button"
-            text={AUTHENTICATION.SUBMIT}
-            onClick={handleSubmit}
-          />
+          <Button type="button" text="인증 완료" onClick={handleSubmit} />
         </ButtonContainer>
       </Card>
     </section>

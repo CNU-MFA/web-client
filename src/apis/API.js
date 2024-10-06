@@ -4,23 +4,21 @@ const API = {
   postLogin: async (id, password) => {
     instance.post({
       method: 'POST',
-      url: '/web/login',
+      url: '/web/auth/login',
       data: {
         id,
         password,
       },
     });
   },
-  getOTPCode: async () => {
+  postAuthStatus: async (id, password) => [
     instance.get({
-      method: 'GET',
-      url: '/web/auth/otp',
-    });
-  },
-  getAuthStatus: async () => [
-    instance.get({
-      method: 'GET',
+      method: 'POST',
       url: '/web/auth/status',
+      data: {
+        id,
+        password,
+      },
     }),
   ],
 };

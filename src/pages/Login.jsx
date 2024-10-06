@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { LOGIN } from '../utils/constants/main';
 import Input from '../components/common/Input';
 import Button from '../components/common/Button';
 import styled from 'styled-components';
@@ -29,8 +28,9 @@ const Login = () => {
   };
 
   const handleSuccessfulLogin = (res) => {
-    if (res.ok) {
-      navigate(NAVIGATION.AUTHENTICATION, { state: { ...user } });
+    const { isOk, otp } = res;
+    if (isOk) {
+      navigate(NAVIGATION.AUTHENTICATION, { state: { ...user, otp } });
       return;
     }
     alert(ERROR.LOGIN_NOT_USER);
@@ -50,15 +50,15 @@ const Login = () => {
   };
 
   return (
-    <Card size={440} title={LOGIN.TITLE}>
+    <Card size={440} title="포털시스템 로그인">
       <Form>
         <div>
           <Input
             type="text"
             variant="login"
             id="id"
-            label={LOGIN.USER_ID}
-            placeholder={LOGIN.USER_ID_PLACEHOLDER}
+            label="포털시스템 로그인"
+            placeholder="로그인ID"
             name="id"
             onChange={handleChange}
           />
@@ -66,8 +66,8 @@ const Login = () => {
             type="password"
             variant="login"
             id="password"
-            label={LOGIN.USER_PASSWORD}
-            placeholder={LOGIN.USER_PW_PLACEHOLDER}
+            label="비밀번호"
+            placeholder="비밀번호"
             name="password"
             onChange={handleChange}
           />
@@ -76,7 +76,7 @@ const Login = () => {
           type="button"
           variant="login"
           onClick={handleSubmit}
-          text={LOGIN.SUBMIT}
+          text="로그인"
         />
       </Form>
     </Card>
