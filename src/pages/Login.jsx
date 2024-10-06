@@ -30,7 +30,7 @@ const Login = () => {
   const handleSuccessfulLogin = async () => {
     const res = await API.postLogin(user.id, user.password);
     const { isOk, otp } = res;
-    console.log('hello');
+    
     if (isOk) {
       navigate(NAVIGATION.AUTHENTICATION, { state: { ...user, otp } });
       return;

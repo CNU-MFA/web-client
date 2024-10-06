@@ -2,22 +2,37 @@ import axios from 'axios';
 
 const API = {
   postLogin: async (id, password) => {
-    axios.post('http://localhost:8080/web/auth/login', {
-      method: 'POST',
-      data: {
+    try {
+      const response = await axios.post('http://localhost:8080/web/auth/login', {
         id,
         password,
-      },
-    });
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Login failed:', error);
+      throw error;
+    }
   },
+
   postAuthStatus: async (id, password) => {
-    axios.post('http://localhost:8080/web/auth/status', {
-      method: 'POST',
-      data: {
+    try {
+      const response = await axios.post('http://localhost:8080/web/auth/status', {
         id,
         password,
-      },
-    });
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Authentication status check failed:', error);
+      throw error;
+    }
   },
 };
 
