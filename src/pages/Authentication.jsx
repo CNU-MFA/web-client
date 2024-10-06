@@ -22,11 +22,10 @@ const Authentication = () => {
     const status = res.status;
 
     if (status === 200) {
-      alert(ERROR.AUTHENTICATION);
+      alert(SUCCESS.AUTHENTICATION);
       return;
     }
-
-    alert(SUCCESS.AUTHENTICATION);
+    return alert(ERROR.AUTHENTICATION);
   };
 
   return (
