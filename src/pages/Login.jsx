@@ -27,8 +27,10 @@ const Login = () => {
     return user.id === '' || user.password === '';
   };
 
-  const handleSuccessfulLogin = (res) => {
+  const handleSuccessfulLogin = async () => {
+    const res = await API.postLogin(user.id, user.password);
     const { isOk, otp } = res;
+    console.log('hello');
     if (isOk) {
       navigate(NAVIGATION.AUTHENTICATION, { state: { ...user, otp } });
       return;
@@ -45,8 +47,8 @@ const Login = () => {
       displayLoginPrompt();
       return;
     }
-    const res = await API.postLogin(user.id, user.password);
-    handleSuccessfulLogin(res);
+
+    await handleSuccessfulLogin();
   };
 
   return (

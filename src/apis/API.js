@@ -1,26 +1,24 @@
-import instance from './core';
+import axios from 'axios';
 
 const API = {
   postLogin: async (id, password) => {
-    instance.post({
+    axios.post('http://localhost:8080/web/auth/login', {
       method: 'POST',
-      url: '/web/auth/login',
       data: {
         id,
         password,
       },
     });
   },
-  postAuthStatus: async (id, password) => [
-    instance.get({
+  postAuthStatus: async (id, password) => {
+    axios.post('http://localhost:8080/web/auth/status', {
       method: 'POST',
-      url: '/web/auth/status',
       data: {
         id,
         password,
       },
-    }),
-  ],
+    });
+  },
 };
 
 export default API;
