@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Card from '../components/common/Card';
 import Description from '../components/common/Description';
 import Button from '../components/common/Button';
@@ -9,6 +9,7 @@ import { ERROR, SUCCESS } from '../utils/constants/messages';
 Button;
 
 const Authentication = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const data = location.state;
   const [otp, setOtp] = useState(data.otp);
@@ -19,13 +20,17 @@ const Authentication = () => {
 
   const handleSubmit = async () => {
     const res = await API.postAuthStatus(data.id, data.password);
-    const status = res.status;
+    const { status } = res.data;
 
-    if (status === 200) {
+    if (status === 'PASSED') {
       alert(SUCCESS.AUTHENTICATION);
       return;
+    } else if (status === 'NOT_PASSED') {
+      return alert(ERROR.AUTHENTICATION);
+    } else {
+      alert(ERROR.RETRY);
+      navigate('/');
     }
-    return alert(ERROR.AUTHENTICATION);
   };
 
   return (
